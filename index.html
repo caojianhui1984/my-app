@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mac 摄像头 rPPG 心率测量</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Remote Photoplethysmography · WebRTC</p>
+          <h1>基于 rPPG 的网页端实时心率测量</h1>
+          <p class="lead">
+            直接调用 Mac 前置摄像头采集用户面部 RGB 视频，在浏览器本地完成面部 ROI、肤色质量评估、运动抑制、POS 色彩投影和频域心率估计。
+          </p>
+        </div>
+        <div class="metric-card" aria-live="polite">
+          <span class="metric-label">当前心率</span>
+          <strong id="heartRate">--</strong>
+          <span class="metric-unit">bpm</span>
+          <small id="confidenceText">等待开始采集</small>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="video-panel">
+          <video id="camera" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <canvas id="processingCanvas" hidden></canvas>
+          <div id="statusBadge" class="status-badge">未启动</div>
+        </div>
+
+        <aside class="controls-panel">
+          <button id="startButton" class="primary">开始测量</button>
+          <button id="stopButton" disabled>停止</button>
+          <dl class="readouts">
+            <div><dt>信号质量</dt><dd id="quality">--</dd></div>
+            <div><dt>采样时长</dt><dd id="duration">0s</dd></div>
+            <div><dt>有效帧率</dt><dd id="fps">-- fps</dd></div>
+            <div><dt>ROI 策略</dt><dd id="roiMode">--</dd></div>
+          </dl>
+          <div class="guidance">
+            <h2>测量建议</h2>
+            <ul>
+              <li>请在光线均匀处面向摄像头，避免强背光和频闪灯。</li>
+              <li>测量前 10 秒尽量保持头部稳定，系统会自动剔除低质量帧。</li>
+              <li>网页端估计值仅用于健康趋势观察，不能替代医疗级设备。</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="src/rppg.js" type="module"></script>
+  </body>
+</html>
