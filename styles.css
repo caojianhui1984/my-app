@@ -1,0 +1,27 @@
+:root { color-scheme: dark; --bg:#08111f; --panel:#111c2e; --text:#eef5ff; --muted:#9fb0c7; --accent:#5eead4; --warn:#fbbf24; --bad:#fb7185; }
+* { box-sizing: border-box; }
+body { margin:0; min-height:100vh; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top left, #18365f, var(--bg) 45%); color:var(--text); }
+.app-shell { width:min(1180px, 94vw); margin:0 auto; padding:40px 0; }
+.hero { display:grid; grid-template-columns: 1fr 260px; gap:24px; align-items:stretch; margin-bottom:24px; }
+.eyebrow { color:var(--accent); letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; font-weight:700; }
+h1 { margin:.2rem 0 1rem; font-size:clamp(2rem, 5vw, 4.5rem); line-height:1; }
+.lead { color:var(--muted); font-size:1.08rem; max-width:780px; }
+.metric-card, .controls-panel, .video-panel { background:rgba(17,28,46,.82); border:1px solid rgba(255,255,255,.11); border-radius:28px; box-shadow:0 24px 70px rgba(0,0,0,.35); }
+.metric-card { display:flex; flex-direction:column; justify-content:center; align-items:center; padding:26px; }
+.metric-label, .metric-unit, .metric-card small { color:var(--muted); }
+#heartRate { font-size:4.8rem; line-height:1; color:var(--accent); }
+.workspace { display:grid; grid-template-columns:minmax(0, 1fr) 330px; gap:24px; }
+.video-panel { position:relative; overflow:hidden; aspect-ratio:16/10; }
+video, #overlay { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scaleX(-1); }
+#overlay { pointer-events:none; }
+.status-badge { position:absolute; top:18px; left:18px; padding:8px 12px; border-radius:999px; background:rgba(8,17,31,.78); color:var(--accent); font-weight:700; }
+.controls-panel { padding:24px; }
+button { width:100%; border:0; border-radius:16px; padding:14px 16px; margin-bottom:12px; font-weight:800; color:var(--text); background:#243147; cursor:pointer; }
+button.primary { background:linear-gradient(135deg, #14b8a6, #2563eb); }
+button:disabled { opacity:.45; cursor:not-allowed; }
+.readouts { display:grid; gap:12px; margin:18px 0; }
+.readouts div { display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:10px; }
+dt { color:var(--muted); } dd { margin:0; font-weight:800; }
+.guidance { color:var(--muted); line-height:1.55; }
+.guidance h2 { color:var(--text); font-size:1.1rem; }
+@media (max-width: 880px) { .hero, .workspace { grid-template-columns:1fr; } .metric-card { min-height:210px; } }
